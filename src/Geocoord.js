@@ -10,6 +10,28 @@ import { geolocated } from "react-geolocated";
 
 
 class Geocoord extends React.Component {
+constructor(props) {
+    super(props);
+    this.state = {
+        latitude: null,
+        longitude: null
+    };
+    this.getLocation = this.getLocation.bind(this);
+    this.getCoordiantes = this.getCoordiantes.bind(this);
+}
+    getLocation() {
+        if(navigator.geoLocalisation) {
+           navigator.geolocation.getCurrentPosition(this.getCoordinates);
+    }   else {
+        alert("geo not supported");
+    }
+}
+    getCoordinates(position) {
+        this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        })
+    }
 render() {
 
     const userPosition = { lat: 48.866667, lng: 2.333333 };
@@ -21,24 +43,18 @@ render() {
         iconUrl: 'https://img.icons8.com/dusk/64/000000/marker.png',
         iconSize: [50, 50]
       });
-        return !this.props.isGeolocationAvailable ? (
-            <div>Your browser does not support Geolocation</div>
-        ) : !this.props.isGeolocationEnabled ? (
-            <div>Geolocation is not enabled</div>
-        ) : this.props.coords ? ( (
+        return (
             <Container>
                 <Row>
                     <Col md={4}>
                         <Cards />
                     </Col>
                     <Col md={8}>
-                        <Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={12} className="Mapclass">                          
+                        <Map center={[this.state.latitude, this.state.longitude]} zoom={12} className="Mapclass">                          
                             <TileLayer
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            />     ) : (
-                                <div>Getting the location data&hellip; </div>
-                            );
+                            />
                             {data.map(park => (
                                 <Marker
                                     position={[
@@ -56,10 +72,9 @@ render() {
                         </Map>
                     </Col>
                 </Row>    
-            </Container>  
-        )      
-        
-                                );                       }
+            </Container>        
+        )}
+    
     }
 
 export default Geocoord
