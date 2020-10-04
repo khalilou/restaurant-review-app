@@ -6,32 +6,36 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Cards from './Cards';
-import { geolocated } from "react-geolocated";
 
 
 class Geocoord extends React.Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        latitude: null,
-        longitude: null
+
+    constructor(props){
+        super(props);
+        this.state = {
+        lating: 48.866667,
+        longing: 2.333333
     };
-    this.getLocation = this.getLocation.bind(this);
-    this.getCoordiantes = this.getCoordiantes.bind(this);
-}
-    getLocation() {
-        if(navigator.geoLocalisation) {
-           navigator.geolocation.getCurrentPosition(this.getCoordinates);
-    }   else {
-        alert("geo not supported");
     }
-}
-    getCoordinates(position) {
-        this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+
+    componentDidMount = () =>{
+        let lat_1;
+        let lon_1;
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+            lat_1 = position.coords.latitude;
+            lon_1 = position.coords.longitude;
+          });
+          this.setState({
+            lating: this.lat_1,
+            longing: this.lon_1
         })
     }
+
+    
+
+
 render() {
 
     const userPosition = { lat: 48.866667, lng: 2.333333 };
@@ -50,7 +54,7 @@ render() {
                         <Cards />
                     </Col>
                     <Col md={8}>
-                        <Map center={[this.state.latitude, this.state.longitude]} zoom={12} className="Mapclass">                          
+                        <Map center={[this.state.lating, this.state.longing]} zoom={12} className="Mapclass">                          
                             <TileLayer
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
