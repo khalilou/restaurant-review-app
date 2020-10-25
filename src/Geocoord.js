@@ -24,8 +24,6 @@ class Geocoord extends React.Component {
         let lat_1;
         let lon_1;
         navigator.geolocation.getCurrentPosition((position) => {
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
             lat_1 = position.coords.latitude;
             lon_1 = position.coords.longitude;
             this.setState({
@@ -49,10 +47,6 @@ class Geocoord extends React.Component {
 render() {
 
     const userPosition = { lat: 36.72866, lng: 10.34163 };
-    console.log(this.state.lating);
-    // const userPosition = { lat: position.coords.latitude, lng: position.coords.longitude };
-
-      
     const skater = new Icon({
         iconUrl: 'https://img.icons8.com/dusk/64/000000/marker.png',
         iconSize: [50, 50]
