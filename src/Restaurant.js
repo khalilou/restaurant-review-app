@@ -10,6 +10,10 @@ export default function Restaurant(props) {
         const handleShow = () => setShow(true);
         const [rating, setCount] = useState(0);
 
+
+
+
+
         let info = props.data;
 
         const changeRating = () => {

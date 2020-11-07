@@ -32,17 +32,7 @@ class Geocoord extends React.Component {
             })
           });
     }
-    // getPicture = () => {
-    //     const endPoint = "https://api.foursquare.com/v2/photos/111XXXYY222"
-    //     const param = {
-    //         client_id: "AGCPW4HPMTYS20VIEI1QLWJHBRDVTXXBCZOQHKCCVFJEDUCX",
-    //         client_secret: "U4PFGRFZXW42B41A12YJPDGG4EVV4INX53LXS5KTKM2UQNGO",
-    //     }
-    //     axios.get(endPoint + new URLSearchParams(param))
-    //     .then(response => {
-    //         console.log(response);
-    //     })
-    // }
+
 
 render() {
 
@@ -58,7 +48,7 @@ render() {
                         <Cards />
                     </Col>
                     <Col md={8}>
-                        <Map center={[this.state.lating, this.state.longing]} zoom={15} className="Mapclass">                          
+                        <Map center={[this.state.lating, this.state.longing]} zoom={15} className="Mapclass" click={this.props.handleClick.bind(this)}>                          
                             <TileLayer
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
