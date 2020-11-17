@@ -8,31 +8,6 @@ export default function Restaurant(props) {
         const [show, setShow] = useState(false);
         const handleClose = () => setShow(false);
         const handleShow = () => setShow(true);
-        const [rating, setCount] = useState(0);
-
-
-
-
-
-        let info = props.data;
-
-        const changeRating = () => {
-            const nbNotes = info.ratings.length;
-            
-            const totalNotes = info.ratings.reduce((acc, rating) => {
-              return acc + rating.stars;
-            }, 0);
-          
-            const moyenne = totalNotes / nbNotes;
-            if(moyenne != rating) {
-                setCount(moyenne);
-            }
-            console.log(rating);
-            // return rating;
-          }
-          changeRating();
-        // const setCount = changeRating()
-        //   console.log(changeRating())
 
     return (
         <div>
@@ -43,8 +18,7 @@ export default function Restaurant(props) {
                 <StarRatings
                     rating={rating}
                     starRatedColor="blue"
-                    changeRating={setCount}
-                    numberOfStars={6}
+                    numberOfStars={5}
                     name='rating'
                 />
             </Card.Body>
