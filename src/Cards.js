@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Card, Modal, Button} from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
-
+import AddReviews from './addReviews';
+import RestaurantImage from './RestaurantImage';
 export default function Cards(props) {
 
     const [show, setShow] = useState(false);
@@ -9,44 +10,12 @@ export default function Cards(props) {
     const handleShow = () => setShow(true);
         return (
             <div>
-                {/* {props.userPlaces.map((place,index) =>               
-                    (
-                   <>
-                    <Card style={{ width: '18rem' }} onClick={handleShow} key={index}>
-                         <Card.Img variant="top" src={"https://via.placeholder.com/150x150"} key={index} />
-                        <Card.Body>
-                            <Card.Title key={index}>{place.name}</Card.Title>
-                            <StarRatings
-                                key={index}
-                                rating={place.review}
-                                starRatedColor="blue"
-                                numberOfStars={5}
-                                name='rating'
-                            />
-                        </Card.Body>
-                    </Card>
-            
-                      <Modal show={show} onHide={handleClose} key={index} >
-            
-                        <Modal.Body key={index}>
-                                <img src={"https://via.placeholder.com/150x150"} />
-                                <p>{place.comment}</p>  
-                        </Modal.Body>
-            
-                        <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>  
-                   </>                              
-                    ))} */}
                 {props.restaurants.map((rest,index) =>               
                     (
                    <>
                     <Card style={{ width: '18rem' }} onClick={handleShow} key={index}>
-                         <Card.Img variant="top" src={"https://via.placeholder.com/150x150"} />
                         <Card.Body>
+                            {rest?.photos?.length === 'undefined' || rest?.photos  === 'undefined' || rest?.photos[0]?.photo_reference === 'undefined' || rest?.photos?.length === null || rest?.photos  === null || rest?.photos[0]?.photo_reference === null ?  null : <RestaurantImage imageRef={rest?.photos[0]?.photo_reference} /> }
                             <Card.Title>{rest.name}</Card.Title>
                             <StarRatings
                                 rating={rest.rating}
@@ -55,9 +24,10 @@ export default function Cards(props) {
                                 name='rating'
                             />
                         </Card.Body>
+                        <AddReviews />
                     </Card>
             
-                      <Modal show={show} onHide={handleClose}>
+                      {/* <Modal show={show} onHide={handleClose}>
             
                         <Modal.Body>
                                 <img src={"https://via.placeholder.com/150x150"} />
@@ -69,7 +39,7 @@ export default function Cards(props) {
                             Close
                         </Button>
                         </Modal.Footer>
-                    </Modal>  
+                    </Modal>   */}
                    </>                              
                     ))}
             </div>
