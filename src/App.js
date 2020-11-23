@@ -15,22 +15,19 @@ export default function App() {
   const updateGeocord = (lat,lng) => {
      latitude = lat;
      longitude = lng;
-     getRestaurant()
+     getRestaurant();
   }
 
 // Get some data from GOOGLE PLACES API
   const getRestaurant = () => { 
     const fetchData = async () => {
       const result = await axios(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDayb3-2k0UBQiaVXDz1N_aot-nIw8BfIg&location=${latitude},${longitude}&radius=400&type=restaurant`
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDayb3-2k0UBQiaVXDz1N_aot-nIw8BfIg&location=${latitude},${longitude}&radius=1000&type=restaurant`
       ); 
       setData(result.data.results)
     };
     fetchData();
   }
-
-
-
   const handleClick = e => {
     let newRest = {
         geometry: {location: {lat: e.latlng.lat, lng: e.latlng.lng }},
@@ -45,7 +42,7 @@ export default function App() {
    <Container>
       <Row>
         <Col md={8}>
-          <Geocoord handleClick={handleClick} updateGeocord={updateGeocord} restaurants={data} />
+          <Geocoord handleClick={handleClick} updateGeocord={updateGeocord} restaurants={data}  />
         </Col>
         <Col md={4}>
           <Cards restaurants={data} />

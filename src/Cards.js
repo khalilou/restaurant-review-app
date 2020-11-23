@@ -3,6 +3,8 @@ import {Card, Modal, Button} from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 import AddReviews from './addReviews';
 import RestaurantImage from './RestaurantImage';
+import GetReview from './GetReview';
+
 export default function Cards(props) {
 
     const [show, setShow] = useState(false);
@@ -15,7 +17,7 @@ export default function Cards(props) {
                    <>
                     <Card style={{ width: '18rem' }} onClick={handleShow} key={index}>
                         <Card.Body>
-                            {rest?.photos?.length === 'undefined' || rest?.photos  === 'undefined' || rest?.photos[0]?.photo_reference === 'undefined' || rest?.photos?.length === null || rest?.photos  === null || rest?.photos[0]?.photo_reference === null ?  null : <RestaurantImage imageRef={rest?.photos[0]?.photo_reference} /> }
+                            {rest?.photos?.length === undefined || rest?.photos  === undefined || rest?.photos[0]?.photo_reference === undefined ?  null : <RestaurantImage imageRef={rest?.photos[0]?.photo_reference} /> }
                             <Card.Title>{rest.name}</Card.Title>
                             <StarRatings
                                 rating={rest.rating}
@@ -24,14 +26,16 @@ export default function Cards(props) {
                                 name='rating'
                             />
                         </Card.Body>
-                        <AddReviews />
                     </Card>
             
-                      {/* <Modal show={show} onHide={handleClose}>
+                      <Modal show={show} onHide={handleClose}>
             
                         <Modal.Body>
-                                <img src={"https://via.placeholder.com/150x150"} />
-                                <p>{rest.user_ratings_total}</p>  
+                            <img src={rest?.photos?.length === undefined || rest?.photos  === undefined 
+                                || rest?.photos[0]?.photo_reference === undefined ?  null : 
+                            <RestaurantImage imageRef={rest?.photos[0]?.photo_reference}  /> } />
+                        <AddReviews />
+                        <GetReview idRef={rest.place_id} />
                         </Modal.Body>
             
                         <Modal.Footer>
@@ -39,7 +43,7 @@ export default function Cards(props) {
                             Close
                         </Button>
                         </Modal.Footer>
-                    </Modal>   */}
+                    </Modal>  
                    </>                              
                     ))}
             </div>
