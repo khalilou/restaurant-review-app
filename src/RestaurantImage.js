@@ -16,7 +16,7 @@ function RestaurantImage(props) {
         console.log("ERROR HAS OCURED" + err);
       });
   }, []);
-
+console.log(imgURL);
   return <img src={imgURL} alt="restaurant-pic" />;
 }
 export default RestaurantImage;
