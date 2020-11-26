@@ -1,9 +1,4 @@
-import React, {useState} from 'react'
-import {Card, Modal, Button} from 'react-bootstrap';
-import StarRatings from 'react-star-ratings';
-import AddReviews from './addReviews';
-import RestaurantImage from './RestaurantImage';
-import GetReview from './GetReview';
+import React from 'react'
 import Restaurant from './Restaurant'
 export default function Cards(props) {
 
