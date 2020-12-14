@@ -10,7 +10,6 @@ export default function GetReview(props) {
         .get(
             `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&key=AIzaSyDayb3-2k0UBQiaVXDz1N_aot-nIw8BfIg`)
         .then(res => {
-            console.log(res);
             setReview(res.data.result.reviews); 
         })
         .catch(err => {

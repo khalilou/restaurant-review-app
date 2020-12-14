@@ -1,0 +1,10 @@
+.card-body img {
+    width: 100%;
+}
+.modal-body img {
+    width: 100%;
+}
+.card-scroll {
+    height: 620px;
+    overflow-y: auto;
+}

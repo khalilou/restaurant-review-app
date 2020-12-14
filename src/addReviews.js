@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import Rater from "react-rater";
-// import "./AddReviews.css";
 
 function AddReviews() {
   const [review, setReview] = useState("");
@@ -26,7 +24,18 @@ function AddReviews() {
 
   return (
     <React.Fragment>
-      <div className="review">
+      <div className="review mt-3 mb-3">
+      <input
+          type="text"
+          onChange={getReview}
+          className="input-text mb-3"
+          placeholder="leave a review"
+          value={review}
+        />
+        <button onClick={addReview} className="submit-review float-right">
+          {" "}
+          Submit a review
+        </button>
         {fullReview.map(({ id, text }) => (
           <ul key={id}>
             <li>
@@ -35,17 +44,7 @@ function AddReviews() {
           </ul>
         ))}
 
-        <input
-          type="text"
-          onChange={getReview}
-          className="input-text"
-          placeholder="leave a review"
-          value={review}
-        />
-        <button onClick={addReview} className="submit-review">
-          {" "}
-          Submit a review
-        </button>
+
       </div>
     </React.Fragment>
   );

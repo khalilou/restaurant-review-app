@@ -30,7 +30,6 @@ class Geocoord extends React.Component {
     static getDerivedStateFromProps(props, state) {
         // À chaque fois que l’utilisateur actuel change, on réinitialise
         // tous les aspects de l’état qui sont liés à cet utilisateur.
-        console.log(props.restaurants);
         if (props.restaurants !== state.restaurants) {
           return {
             restaurants: props.restaurants,
@@ -45,14 +44,13 @@ render() {
         iconUrl: 'https://img.icons8.com/dusk/64/000000/marker.png',
         iconSize: [50, 50]
       });
-      console.log(this.state.restaurants);
         return (
             <Map center={[this.state.lating, this.state.longing]} zoom={15} className="Mapclass" ondblclick={this.props.handleClick}>                          
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {this.state.restaurants.map((rest,index) => (
+                {this.state.restaurants.filter(rest => (rest.rating >= this.props.min)&&(rest.rating <= this.props.max)).map((rest,index) => (
                     <Marker key={index}
                         position={[
                             rest.geometry.location.lat,
@@ -63,18 +61,6 @@ render() {
                         </Popup>
                     </Marker>
                 ))}
-                
-                {/* {this.props.userPlaces === [] ? null :  this.props.userPlaces.map((place) => (
-                    <Marker key={place.id}
-                        position={[
-                            place.location.lat,
-                            place.location.lng
-                        ]}>
-                        <Popup>
-                            <span>{place.name}</span>
-                        </Popup>
-                    </Marker>
-                ))} */}
                         <Marker position={[userPosition.lat,userPosition.lng]} icon={skater}>
     
                     </Marker> 
